@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", "Inter", system-ui, sans-serif;
+  
+  --color-forest-green: #176f3c;
+  --color-forest-deep: #064e3b;
+  --color-forest-sage: #f0fdf4;
+  --color-forest-mist: #fdfdfb;
+  --color-forest-gold: #b45309;
+}
+
+@layer base {
+  body {
+    @apply bg-forest-mist text-slate-800 font-sans antialiased selection:bg-forest-green/20 selection:text-forest-green transition-colors duration-700;
+  }
+}
+
+@layer components {
+  .frosted-glass {
+    @apply bg-white/96 backdrop-blur-3xl border border-forest-sage shadow-[0_32px_64px_-16px_rgba(0,0,0,0.06)];
+  }
+
+  .forest-gradient {
+    background: linear-gradient(135deg, var(--color-forest-green), var(--color-forest-deep));
+  }
+
+  .soft-shadow {
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.04), 0 20px 40px -15px rgba(0, 0, 0, 0.02);
+  }
+
+  .hover-lift {
+    @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-forest-green/10;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-reveal {
+    animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-forest-mist;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full hover:bg-forest-green transition-colors;
+}
